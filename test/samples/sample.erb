@@ -1,0 +1,17 @@
+<div class="user-profile">
+  <h1><%= @user.name %></h1>
+  <p><%= @user.email %></p>
+
+  <% if @user.active? %>
+    <span class="status">Active</span>
+  <% end %>
+
+  <ul>
+    <% @posts.each do |post| %>
+      <li><%= post.title %></li>
+      <li><%= post.published_at.strftime("%Y-%m-%d") %></li>
+    <% end %>
+  </ul>
+
+  <%= render partial: "shared/footer" %>
+</div>
