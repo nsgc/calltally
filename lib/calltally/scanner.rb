@@ -13,7 +13,7 @@ module Calltally
     def scan
       files = collect_paths
       warn_verbose "Scan targets: #{files.size} files"
-      files.first(10).each { warn_verbose " - #{it}" }
+      files.first(10).each { |file| warn_verbose " - #{file}" }
 
       pair_counts     = Hash.new(0)
       method_counts   = Hash.new(0)

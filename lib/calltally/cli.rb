@@ -72,15 +72,15 @@ module Calltally
       config_override = nil
 
       opts = OptionParser.new do |opt|
-        opt.on("--profile PROFILE") { cli_opts["profile"] = it }
-        opt.on("-d x,y", "--dirs x,y", Array) { cli_opts["dirs"] = it }
-        opt.on("-x x,y", "--exclude x,y", Array) { cli_opts["exclude"] = it }
-        opt.on("-n N", "--top N", Integer) { cli_opts["top"] = it }
+        opt.on("--profile PROFILE") { |v| cli_opts["profile"] = v }
+        opt.on("-d x,y", "--dirs x,y", Array) { |v| cli_opts["dirs"] = v }
+        opt.on("-x x,y", "--exclude x,y", Array) { |v| cli_opts["exclude"] = v }
+        opt.on("-n N", "--top N", Integer) { |v| cli_opts["top"] = v }
         opt.on("-v", "--verbose") { cli_opts["verbose"] = true }
         opt.on("--erb") { cli_opts["include_erb"] = true }
-        opt.on("--mode MODE", [:pairs, :methods, :receivers]) { cli_opts["mode"] = it.to_s }
-        opt.on("--receivers x,y", Array) { cli_opts["receivers"] = it }
-        opt.on("--methods x,y", Array) { cli_opts["methods"] = it }
+        opt.on("--mode MODE", [:pairs, :methods, :receivers]) { |v| cli_opts["mode"] = v.to_s }
+        opt.on("--receivers x,y", Array) { |v| cli_opts["receivers"] = v }
+        opt.on("--methods x,y", Array) { |v| cli_opts["methods"] = v }
         opt.on("--include-nil-receiver") { cli_opts["include_nil_receiver"] = true }
         opt.on("--split-variables") { cli_opts["split_variables"] = true }
         opt.on("--only-locals") { (cli_opts["receiver_types"] ||= []) << "locals" }
@@ -89,10 +89,10 @@ module Calltally
         opt.on("--only-gvars") { (cli_opts["receiver_types"] ||= []) << "gvars" }
         opt.on("--only-constants") { (cli_opts["receiver_types"] ||= []) << "constants" }
         opt.on("--only-results") { (cli_opts["receiver_types"] ||= []) << "results" }
-        opt.on("--[no-]skip-operators") { cli_opts["skip_operators"] = it }
-        opt.on("--format F", [:table, :json, :csv]) { cli_opts["format"] = it.to_s }
-        opt.on("-o PATH", "--output PATH") { cli_opts["output"] = it }
-        opt.on("--config PATH") { config_override = it }
+        opt.on("--[no-]skip-operators") { |v| cli_opts["skip_operators"] = v }
+        opt.on("--format F", [:table, :json, :csv]) { |v| cli_opts["format"] = v.to_s }
+        opt.on("-o PATH", "--output PATH") { |v| cli_opts["output"] = v }
+        opt.on("--config PATH") { |v| config_override = v }
         opt.on("-h", "--help") { puts opt; exit }
       end
 
