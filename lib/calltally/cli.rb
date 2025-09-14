@@ -43,7 +43,6 @@ module Calltally
           -x, --exclude x,y        Path parts to exclude
           -n, --top N              Show top N (default: 100)
           -v, --verbose
-          --erb                    Include .erb (requires 'erubi' gem)
           --mode MODE              Output mode:
                                    - pairs (default): receiver-method pairs
                                    - methods: method names only
@@ -77,7 +76,6 @@ module Calltally
         opt.on("-x x,y", "--exclude x,y", Array) { |v| cli_opts["exclude"] = v }
         opt.on("-n N", "--top N", Integer) { |v| cli_opts["top"] = v }
         opt.on("-v", "--verbose") { cli_opts["verbose"] = true }
-        opt.on("--erb") { cli_opts["include_erb"] = true }
         opt.on("--mode MODE", [:pairs, :methods, :receivers]) { |v| cli_opts["mode"] = v.to_s }
         opt.on("--receivers x,y", Array) { |v| cli_opts["receivers"] = v }
         opt.on("--methods x,y", Array) { |v| cli_opts["methods"] = v }
@@ -108,11 +106,6 @@ module Calltally
       end
 
       config = Calltally::Config.load(base_dir: base_dir, cli_opts: cli_opts)
-
-      if config["profile"] == "rails" && config["include_erb"] && !Calltally::Config.erubi_available?
-        warn "[calltally] Rails profile detected but 'erubi' not found. ERB will be skipped. Install 'erubi' to include ERB."
-        config["include_erb"] = false
-      end
 
       mode, rows = Calltally::Scanner.new(base_dir: base_dir, config: config).scan
 

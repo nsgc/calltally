@@ -38,5 +38,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "csv", ">= 3.0"    # No longer bundled with Ruby 3.4+
 
   spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "erubi"  # For testing ERB processing
 end
