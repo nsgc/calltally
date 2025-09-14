@@ -61,7 +61,6 @@ module Calltally
 
     def collect_paths
       exts = %w[.rb .ru .rake]
-      exts << ".erb" if @config["include_erb"]
 
       files = []
       @config["dirs"].each do |dir|
@@ -87,18 +86,7 @@ module Calltally
 
     def read_source(path)
       src = File.binread(path)
-      src = src.encode(Encoding::UTF_8, invalid: :replace, undef: :replace, replace: "")
-
-      if @config["include_erb"] && File.extname(path) == ".erb"
-        begin
-          require "erubi"
-          src = Erubi::Engine.new(src).src
-        rescue LoadError
-          warn "ERB requested but 'erubi' not installed. Skipping ERB compilation for #{path}."
-        end
-      end
-
-      src
+      src.encode(Encoding::UTF_8, invalid: :replace, undef: :replace, replace: "")
     end
   end
 end

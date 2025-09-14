@@ -11,7 +11,6 @@ module Calltally
       "exclude" => %w[spec test vendor node_modules tmp log .git .bundle],
       "top" => 100,
       "verbose" => false,
-      "include_erb" => false,
       "mode" => "pairs",                # pairs|methods|receivers
       "receivers" => nil,               # ["User","Group"]
       "methods" => nil,                 # ["where","find"]
@@ -40,7 +39,6 @@ module Calltally
 
       if config["profile"] == "rails"
         config["dirs"] = RAILS_DIR_PRESET if config["dirs"] == DEFAULTS["dirs"]
-        config["include_erb"] = config["include_erb"] || erubi_available?
       end
 
       config["receivers"] = to_set_or_nil(config["receivers"])
@@ -57,13 +55,6 @@ module Calltally
       else
         "default"
       end
-    end
-
-    def self.erubi_available?
-      require "erubi"
-      true
-    rescue LoadError
-      false
     end
 
     def self.to_set_or_nil(v)

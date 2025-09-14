@@ -44,8 +44,8 @@ Calltally automatically detects Rails projects and scans the right directories:
 # Auto-detects Rails and scans app/, lib/, config/
 calltally
 
-# Include ERB templates
-calltally --erb
+# Analyze specific file patterns
+calltally app/models
 
 # Focus on ActiveRecord methods
 calltally --methods where,find,joins --mode pairs
@@ -95,7 +95,7 @@ exclude:                # Patterns to exclude
   - test
   - vendor
 top: 50                 # Number of results to show
-include_erb: true       # Process ERB files
+# ERB files are not analyzed to avoid compilation noise
 mode: pairs            # pairs|methods|receivers
 skip_operators: true    # Skip operators like +, -, ==
 ```
@@ -148,7 +148,6 @@ Options:
   -x, --exclude x,y        Path parts to exclude
   -n, --top N              Show top N results (default: 100)
   -v, --verbose            Verbose output
-  --erb                    Include .erb files (requires erubi gem)
 
   --mode MODE              Output mode:
                            - pairs: receiver-method pairs (default)
