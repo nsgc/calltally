@@ -207,6 +207,26 @@ Calltally shows method calls in your codebase with their receivers:
 5. **Code reviews** - Quickly analyze unfamiliar codebases
 6. **Gem development** - See how your gem's methods are used
 
+## FAQ
+
+### Why does grep show different counts than CallTally?
+
+CallTally counts method **calls**, not all text occurrences:
+- `grep "Current.user"` finds both `Current.user` (getter) and `Current.user = value` (setter)
+- CallTally only counts `Current.user` (the getter method call)
+- Setters like `name=` are separate methods and not counted as `name`
+
+### Which file types are analyzed?
+
+- **Ruby files**: `.rb`, `.ru`, `.rake`
+- **Not included**: JavaScript, CSS, YAML, and other file types
+
+### Why do I see (result) as a receiver?
+
+When methods are chained, CallTally shows intermediate results as `(result)`:
+- `user.posts.first` → `(var).posts` + `(result).first`
+- This happens because CallTally doesn't infer types without type annotations
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/nsgc/calltally.
