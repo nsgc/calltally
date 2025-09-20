@@ -58,6 +58,7 @@ module Calltally
           --only-constants         Show only constant receivers
           --only-results           Show only method results receivers
           --[no-]skip-operators    Skip operator methods like +, -, ==, [] (default: true)
+          --plugins x,y            Enable plugins (e.g., erb for calltally-erb)
           --format F               table(default)|json|csv
           -o, --output PATH        Write result to file instead of STDOUT
           --config PATH            Use a specific .calltally.yml
@@ -88,6 +89,7 @@ module Calltally
         opt.on("--only-constants") { (cli_opts["receiver_types"] ||= []) << "constants" }
         opt.on("--only-results") { (cli_opts["receiver_types"] ||= []) << "results" }
         opt.on("--[no-]skip-operators") { |v| cli_opts["skip_operators"] = v }
+        opt.on("--plugins x,y", Array) { |v| cli_opts["plugins"] = v }
         opt.on("--format F", [:table, :json, :csv]) { |v| cli_opts["format"] = v.to_s }
         opt.on("-o PATH", "--output PATH") { |v| cli_opts["output"] = v }
         opt.on("--config PATH") { |v| config_override = v }

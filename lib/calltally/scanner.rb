@@ -2,12 +2,14 @@
 
 require "find"
 require "calltally/prism_visitor"
+require "calltally/plugin"
 
 module Calltally
   class Scanner
     def initialize(base_dir:, config:)
       @base_dir = File.expand_path(base_dir)
       @config   = config
+      load_plugins(@config["plugins"])
     end
 
     def scan
@@ -61,6 +63,7 @@ module Calltally
 
     def collect_paths
       exts = %w[.rb .ru .rake]
+      exts.concat(Calltally::Plugin.registered_exts)
 
       files = []
       @config["dirs"].each do |dir|
@@ -85,8 +88,25 @@ module Calltally
     end
 
     def read_source(path)
-      src = File.binread(path)
-      src.encode(Encoding::UTF_8, invalid: :replace, undef: :replace, replace: "")
+      src = File.binread(path).encode(Encoding::UTF_8, invalid: :replace, undef: :replace, replace: "")
+
+      if (plugin_result = Calltally::Plugin.handle(path, src, @config))
+        return plugin_result
+      end
+
+      src
+    end
+
+    def load_plugins(plugin_names = [])
+      return if plugin_names.empty?
+
+      plugin_names.each do |plugin_name|
+        require "calltally/#{plugin_name}"
+
+        warn_verbose "Loaded plugin: calltally-#{plugin_name}"
+      rescue LoadError
+        warn "Plugin 'calltally-#{plugin_name}' not found. Install with: gem install calltally-#{plugin_name}"
+      end
     end
   end
 end

@@ -95,7 +95,6 @@ exclude:                # Patterns to exclude
   - test
   - vendor
 top: 50                 # Number of results to show
-# ERB files are not analyzed to avoid compilation noise
 mode: pairs            # pairs|methods|receivers
 skip_operators: true    # Skip operators like +, -, ==
 ```
