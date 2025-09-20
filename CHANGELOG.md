@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-09-20
+
+### Added
+- Plugin system for extensible file processing
+  - New `--plugins` option to load external plugins
+  - Plugin API with `register`, `handle`, and `registered_exts` methods
+  - Plugins can register custom file handlers for any extension
+
+### Changed
+- Updated Prism dependency to 1.5.1
+
 ## [0.2.0] - 2025-09-14
 
 ### Removed
@@ -41,6 +52,7 @@ Focus for now is on Ruby code in models/controllers/services; view logic can be 
 - Output formats: table, JSON, CSV
 - Ruby 3.2+ compatibility
 
-[Unreleased]: https://github.com/nsgc/calltally/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/nsgc/calltally/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/nsgc/calltally/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/nsgc/calltally/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/nsgc/calltally/releases/tag/v0.1.0
