@@ -6,20 +6,21 @@ require "set"
 module Calltally
   class Config
     DEFAULTS = {
-      "profile" => "auto",              # auto|rails|default
-      "dirs" => %w[.],
-      "exclude" => %w[spec test vendor node_modules tmp log .git .bundle],
-      "top" => 100,
-      "verbose" => false,
-      "mode" => "pairs",                # pairs|methods|receivers
-      "receivers" => nil,               # ["User","Group"]
-      "methods" => nil,                 # ["where","find"]
+      "profile"              => "auto",  # auto|rails|default
+      "dirs"                 => %w[.],
+      "exclude"              => %w[spec test vendor node_modules tmp log .git .bundle],
+      "top"                  => 100,
+      "verbose"              => false,
+      "mode"                 => "pairs", # pairs|methods|receivers
+      "receivers"            => nil,     # ["User","Group"]
+      "methods"              => nil,     # ["where","find"]
       "include_nil_receiver" => false,
-      "split_variables" => false,      # Show variable names vs grouping
-      "receiver_types" => nil,          # ["locals", "ivars", "constants"] etc.
-      "skip_operators" => true,
-      "format" => "table",              # table|json|csv
-      "output" => nil
+      "split_variables"      => false,   # Show variable names vs grouping
+      "receiver_types"       => nil,     # ["locals", "ivars", "constants"] etc.
+      "skip_operators"       => true,
+      "format"               => "table", # table|json|csv
+      "output"               => nil,
+      "plugins"              => []       # Enable plugins (e.g., ["erb"])
     }.freeze
 
     RAILS_DIR_PRESET = %w[app lib config].freeze
