@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2025-10-10
+
+### Fixed
+- Fixed `--exclude` option not properly excluding root-level directories (e.g., `spec/`, `test/`)
+- Simplified exclude pattern matching logic for better reliability
+
+### Changed
+- Removed `test` and `spec` from default exclude list to enable test code analysis
+- Test and spec directories are now scanned by default (can still be excluded with `-x test,spec`)
+
 ## [0.3.0] - 2025-09-20
 
 ### Added
