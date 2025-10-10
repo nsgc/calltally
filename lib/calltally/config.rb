@@ -8,7 +8,7 @@ module Calltally
     DEFAULTS = {
       "profile"              => "auto",  # auto|rails|default
       "dirs"                 => %w[.],
-      "exclude"              => %w[spec test vendor node_modules tmp log .git .bundle],
+      "exclude"              => %w[vendor node_modules tmp log .git .bundle],
       "top"                  => 100,
       "verbose"              => false,
       "mode"                 => "pairs", # pairs|methods|receivers
