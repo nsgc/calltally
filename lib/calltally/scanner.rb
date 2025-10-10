@@ -84,7 +84,9 @@ module Calltally
 
     def excluded?(path)
       rel = path.sub(@base_dir + "/", "")
-      @config["exclude"].any? { |ex| rel.include?("/#{ex}/") || File.basename(rel).start_with?("#{ex}.") }
+      @config["exclude"].any? do |ex|
+        rel == ex || rel.start_with?("#{ex}/", "#{ex}.") || rel.include?("/#{ex}/")
+      end
     end
 
     def read_source(path)
