@@ -51,7 +51,7 @@ module Calltally
       return desired unless desired == "auto"
 
       gemfile_path = File.join(base_dir, "Gemfile")
-      if File.file?(gemfile_path) && File.read(gemfile_path).include?("rails")
+      if File.file?(gemfile_path) && File.read(gemfile_path).match?(/^\s*gem\s+["']rails["']/)
         "rails"
       else
         "default"
