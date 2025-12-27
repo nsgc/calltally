@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    calltally (0.3.2)
+    calltally (0.3.3)
       csv (>= 3.0)
       prism (>= 1.0)
 
