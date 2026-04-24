@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
                       "refactoring decisions, and identifying heavily-used APIs."
   spec.homepage = "https://github.com/nsgc/calltally"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.2.0"
+  spec.required_ruby_version = ">= 3.3.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/nsgc/calltally.git"
@@ -33,9 +33,10 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  # Dependencies for compatibility across Ruby versions
-  spec.add_dependency "prism", ">= 1.0"  # Needed for Ruby 3.2, built-in for 3.3+
-  spec.add_dependency "csv", ">= 3.0"    # No longer bundled with Ruby 3.4+
+  # Ruby 3.3 ships prism 0.19; we need 1.x API
+  spec.add_dependency "prism", ">= 1.0"
+  # csv is no longer bundled with Ruby 3.4+
+  spec.add_dependency "csv", ">= 3.0"
 
   spec.add_development_dependency "rake", "~> 13.0"
 end

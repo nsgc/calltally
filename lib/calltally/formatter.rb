@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
-begin
-  require "csv"
-rescue LoadError
-  # CSV is optional for Ruby 3.4+
-end
+require "csv"
 
 module Calltally
   module Formatter
