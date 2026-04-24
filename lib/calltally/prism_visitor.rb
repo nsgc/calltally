@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
-begin
-  require "prism"
-rescue LoadError
-  warn "[calltally] prism not found. Install 'prism' gem or use Ruby 3.3+."
-  raise
-end
+require "prism"
 
 module Calltally
   class PrismVisitor < ::Prism::Visitor
