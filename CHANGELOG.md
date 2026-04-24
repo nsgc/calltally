@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-04-24
+
+### Removed
+- **BREAKING:** Ruby 3.2 support (reached end-of-life on 2026-03-31)
+
+### Changed
+- Bumped minimum Ruby version to 3.3.0
+- Updated prism to 1.9.0 for improved visitor performance on large codebases
+- Updated Bundler to 4.0.10
+
 ## [0.3.3] - 2025-12-27
 
 ### Added
@@ -75,7 +85,8 @@ Focus for now is on Ruby code in models/controllers/services; view logic can be 
 - Output formats: table, JSON, CSV
 - Ruby 3.2+ compatibility
 
-[Unreleased]: https://github.com/nsgc/calltally/compare/v0.3.3...HEAD
+[Unreleased]: https://github.com/nsgc/calltally/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/nsgc/calltally/compare/v0.3.3...v0.4.0
 [0.3.3]: https://github.com/nsgc/calltally/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/nsgc/calltally/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/nsgc/calltally/compare/v0.3.0...v0.3.1
